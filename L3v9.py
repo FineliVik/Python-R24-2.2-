@@ -3,6 +3,14 @@ import tkinter as tk
 from tkinter import PhotoImage
 import pygame
 
+"""
+ВАЖНО!
+Перед запуском сохранить из репозитория в отдельную папку с кодом:
+background2.png
+image1.png
+music.mp3
+"""
+
 alf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def cancel():
