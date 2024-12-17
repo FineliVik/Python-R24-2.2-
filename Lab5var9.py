@@ -16,18 +16,21 @@ print(f'Все размеры изображений: {result_for_html_file}')
 #Задача 3: Вариант 9. Таблица
 file_csv = open('task3.txt', encoding = 'utf-8').read()
 
-result_for_csv_file_emails = re.findall(r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b', file_html) #
+result_for_csv_file_emails = re.findall(r'\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b', file_csv) #
 print(f'Электронные почты: \n{result_for_csv_file_emails}') # Дааааа, тут не получилось
 
-result_for_csv_file_surnames = re.findall(r'\b[A-Z][a-z]+(?:[-\s][A-Z][a-z]+)?\b', file_html)
+result_for_csv_file_surnames = re.findall(r'\b[A-Z][a-z]+(?:[-\s][A-Z][a-z]+)?\b', file_csv)
 print(f'Фамилии: \n{result_for_csv_file_surnames}')
 
-result_for_csv_file_dates = re.findall(r'\b\d{4}-\d{2}-\d{2}\b', file_html)
+result_for_csv_file_dates = re.findall(r'\b\d{4}-\d{2}-\d{2}\b', file_csv)
 print(f'Даты регистрации: \n{result_for_csv_file_dates}')
 
-result_for_csv_file_websites = re.findall(r'https?://[^\s]+', file_html)
+result_for_csv_file_websites = re.findall(r'https?://[^\s]+', file_csv)
 print(f'Сайты: \n{result_for_csv_file_websites}')
 
-result_for_csv_file_identifiers = re.findall(r'\b\d+\b', file_html)
+result_for_csv_file_identifiers = re.findall(r'\b\d+\b', file_csv)
 print(f'Идентификаторы: \n{result_for_csv_file_identifiers}')
 
+table = [['Электронные почты', result_for_csv_file_emails], ['Фамилии', result_for_csv_file_surnames],
+         ['Даты регистрации', result_for_csv_file_dates], ['Сайты', result_for_csv_file_websites],
+         ['Идентификаторы', result_for_csv_file_identifiers]] # - таблица в списке
