@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплектующие ПК</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 8px;
+            margin-right: 10px;
+        }
+        button.clear {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.clear:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Учет комплектующих ПК</h1>
+        
+        <!-- Форма для добавления -->
+        <form method="POST" class="form-group">
+            <input type="text" name="name" placeholder="Устройство" required>
+            <input type="number" name="price" placeholder="Цена" step="0.01" min="0" required>
+            <button type="submit">Добавить</button>
+        </form>
+        
+        <!-- Форма для очистки (ОТДЕЛЬНАЯ форма!) -->
+        <form action="{{ url_for('index') }}" method="GET" style="display: inline;">
+            <input type="hidden" name="clear" value="true">
+            <button type="submit" class="clear">Clear</button>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Устройство</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for component in components %}
+                <tr>
+                    <td>{{ component.name }}</td>
+                    <td>{{ "%.2f"|format(component.price) }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="total">
+            Общая стоимость: {{ "%.2f"|format(total) }} ₽
+        </div>
+    </div>
+</body>
+</html>
